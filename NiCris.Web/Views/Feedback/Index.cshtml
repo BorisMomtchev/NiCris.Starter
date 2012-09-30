@@ -1,0 +1,148 @@
+﻿@model NiCris.Web.ViewModels.FeedbackModel
+@{
+    Layout = null;
+}
+
+<script src="@Url.Content("~/Scripts/jquery/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('form').submit(function () {
+            if ($(this).valid()) {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+
+                    success: function (result) {
+                        $('#result').html(result);
+                    }
+                    /*
+                    ,
+                    error: function () {
+                    alert('failure');
+                    }
+                    */
+                });
+            }
+            return false;
+        });
+    });
+</script>
+
+<div>
+    <canvas id="background" style="position: fixed; padding-top: 100px; width: 100%; height: 100%;"></canvas>
+</div>
+
+<div id="result" style="position: fixed; margin: 5px 20px 20px 20px;">
+    <legend>Comments & Requests</legend> 
+    <h6>Please use the form below to send us any comments you may have or to request new features</h6><br/><br/>
+
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+
+        <table cellspacing="0" cellpadding="0">
+            <tr><td style="vertical-align:top; width:110px">Name</td><td>
+                @Html.TextBoxFor(model => model.Name, new { style = "width: 400px;" })
+                &nbsp
+                @Html.ValidationMessageFor(model => model.Name)                   
+            </td></tr>
+
+            <tr><td style="vertical-align:top">E-Mail</td><td>
+                @Html.TextBoxFor(model => model.Email, new { style = "width: 400px;" })
+                &nbsp
+                @Html.ValidationMessageFor(model => model.Email)
+            </td></tr>
+
+            <tr><td style="vertical-align:top">Subject</td><td>
+                @Html.TextBoxFor(model => model.Subject, new { style = "width: 400px;" })
+                &nbsp
+                @Html.ValidationMessageFor(model => model.Subject)
+            </td></tr>
+
+            <tr><td style="vertical-align:top">Message</td><td>
+                @Html.TextAreaFor(model => model.Message, new { style = "width: 400px;" })
+                &nbsp
+                @Html.ValidationMessageFor(model => model.Message)
+            </td></tr>
+        </table>
+
+        <p>
+            <br/>
+            <input type="submit" value="Send Message" class="btn btn-primary" />
+        </p>
+    }
+</div>
+
+@* Visual *@
+<script type="text/javascript">
+
+    function Bit(size, color) {
+        this.size = size;
+        if (size < 20) {
+            this.speed = 1.5;
+        }
+        else if (size < 30) {
+            this.speed = 1;
+        }
+        else {
+            this.speed = 0.5;
+        }
+        this.color = color;
+        this.xpos = Math.random() * screen.availWidth - this.size;
+        this.ypos = 100 + 500 * (canvas.width - this.xpos) / canvas.width + 100 * Math.sin(this.offset + this.xpos / 500);
+        this.offset = new Number(100 * Math.random());
+
+        this.tick = function () {
+            if (this.xpos > maxX) {
+                this.xpos = -this.size;
+                this.offset = new Number(100 * Math.random());
+            }
+            else {
+                this.xpos += this.speed;
+            }
+
+            this.ypos = 100 + 500 * (canvas.width - this.xpos) / canvas.width + 100 * Math.sin(this.offset + this.xpos / 500);
+        }
+
+        this.draw = function () {
+            context.fillStyle = this.color;
+            context.fillRect(this.xpos, this.ypos, this.size, this.size);
+        }
+    }
+
+    function reDraw() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        for (var bit in bits) {
+            bits[bit].draw();
+            bits[bit].tick();
+        }
+    }
+
+    var colours = ['#FF24DE', '#4ABAFF', '#AFE48A', '#FF9742'];
+    var maxX = screen.availWidth + 40;
+
+    var canvas = document.getElementById('background');
+    canvas.width = screen.availWidth;
+    canvas.height = screen.availHeight;
+
+    var context = canvas.getContext('2d');
+    context.globalAlpha = 0.7;
+
+    var bits = new Array(200);
+    var bit;
+    for (var i = 0; i < 200; ++i) {
+        bit = new Bit(10 + 40 * Math.random(), colours[Math.floor(4 * Math.random())]);
+        bits[i] = bit;
+    }
+
+    // trigger only once...
+    if (!_feedbackLoaded) {
+        _feedbackLoaded = true;
+        setInterval(reDraw, 50);
+    }
+
+</script>

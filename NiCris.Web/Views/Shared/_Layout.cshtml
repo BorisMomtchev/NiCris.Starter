@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+
+    <link rel="icon" type="image/ico" href="@Url.Content("~/Content/images/favicon.ico")" />
+    <link rel="shortcut icon" href="@Url.Content("~/Content/images/favicon.ico")" />
+    
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/kendo/kendo.common.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/kendo/kendo.default.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/bootstrap/bootstrap.min.css")" rel="stylesheet" type="text/css"/>
+
+    <link href="@Url.Content("~/Content/themes/redmond/jquery-ui-1.8.16.custom.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Scripts/jtable/themes/standard/blue/jtable_blue.css")" rel="stylesheet" type="text/css" />
+
+
+    <script src="@Url.Content("~/Scripts/jquery/jquery-1.7.2.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/kendo/kendo.web.min.js")" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/jquery/jquery-ui-1.8.23.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jtable/jquery.jtable.min.js")" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/jquery/jquery.signalR-0.5.3.min.js")" type="text/javascript"></script>
+    <script src="/signalr/hubs" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        var _rootUrl = "@Url.Content("~")";
+        var _feedbackLoaded = false;
+    </script>
+</head>
+
+<body>
+    <div id="mainSplitter" style="height: 100%; border: 0;">
+        <div id="titlePane" style="background-color: #fff">
+            <span><img id ="logoID" src="@Url.Content("~/Content/images/logo.png")" alt="logo" border="0"/></span>
+            <span style="font-size:medium; color:Gray;"> Starter Project &#174;</span>
+
+            <span style="color:gray; float:right; padding-top:20px">Copyright &#169; NiCris Starter 2012 | Version: 
+            @System.Reflection.Assembly.GetAssembly(typeof(NiCris.Web.Controllers.HomeController)).GetName().Version.ToString()</span>
+        </div>
+        <div id="mainPane">
+            <div id="contentSplitter">
+                <div id="navigationPane"></div>
+                <div id="contentPane">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*Status Bar*@
+    <div id="bottom-pane" style="height: 20px; width: 99%; padding: 2px 5px 0 5px">
+        <div class="pane-content">
+            <table border="0" cellpadding="2" cellspacing="0" width="100%">
+                <tr><td>
+                        User: <b>@NiCris.Web.Helpers.SecurityHelper.GetLoggedInWindowsUserName(System.Web.HttpContext.Current.User)</b>
+                        |
+                        Server: <b>@NiCris.Web.Helpers.SecurityHelper.GetDataSource()</b>
+                        |
+                        Database: <b>@NiCris.Web.Helpers.SecurityHelper.GetInitialCatalog()</b>
+                    </td>
+                    <td align="right"><small>Loaded on: @string.Format("{0:M-d-yyyy hh:mm:ss tt}", DateTime.Now) (CT)</small></td></tr>
+            </table>
+
+        </div>
+    </div>
+
+    <script src="@Url.Content("~/Scripts/business/Layout.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        Layout.init();
+
+        // Ajax reload of the Main Panel Items, instead of hard href
+        $('#logoID').on('click', function () {
+            var splitter = $("#contentSplitter").data("kendoSplitter");
+            splitter.ajaxRequest("#contentPane", _rootUrl + "Home/MainPanelItems");
+            $("#navPanelBar").data("kendoPanelBar").collapse($("#navPanelBar").find(".k-state-active"));
+        });
+
+        // collapse the pain for more real estate
+        // var splitter = $("#contentSplitter").data("kendoSplitter");
+        // splitter.collapse("#navigationPane");
+    </script>
+
+    <style scoped>
+        #logoID { cursor: pointer; }
+    </style>
+</body>
+</html>

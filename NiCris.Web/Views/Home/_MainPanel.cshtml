@@ -1,0 +1,155 @@
+﻿@{
+    Layout = null;
+}
+
+@* ListView widget creation; Holds the Main Panel Items *@
+<div id="listView"></div>
+
+@* Browser validation *@
+<div id="browserCheck" style="display:none; margin: 20px 20px 20px 20px;">
+    Please use one of the following supported browsers:
+    <ul>
+        <li>Mozilla Firefox (min ver: 11)</li>
+        <li>Google Chrome (min ver: 18)</li>
+        <li>Safari (min ver: 5.1)</li>
+        <li>Internet Explorer (min ver: 10)</li>
+    </ul>
+    <br/>
+    For more information about HTML5 & CSS3 browser support <a href="http://www.findmebyip.com/litmus/">click here</a> 
+</div>
+
+<script type="text/x-kendo-tmpl" id="template">
+    <div class="mainPanel">
+        <img src="@Url.Content("~/Content/images/${Icon}")" alt="${Name} image" />
+        <h2>${Title}</h2><h3>${Name}</h3>
+    </div>
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        // browser validation - IE
+        if ($.browser.msie && $.browser.version < 10) {
+            $("#browserCheck").prepend("Internet Explorer: " + $.browser.version + " is not supported.<br/><br/>");
+            $("#browserCheck").show();
+            return;
+        }
+
+        // browser validation - Opera
+        if ($.browser.opera) {
+            $("#browserCheck").prepend("Opera: " + $.browser.version + " is not supported.<br/><br/>");
+            $("#browserCheck").show();
+            return;
+        }
+
+        var dataSource = new kendo.data.DataSource({
+            transport: {
+                read: {
+                    url: _rootUrl + "Home/GetMainPanelItems",
+                    dataType: "jsonp"
+                }
+            }
+        });
+
+        $("#listView").kendoListView({
+            dataSource: dataSource,
+            selectable: "single",
+            navigatable: true,
+            dataBound: onDataBound,
+            change: onChange,
+            template: kendo.template($("#template").html())
+        });
+
+        function onDataBound() {
+            // console.log("ListView data bound");
+        }
+
+        function onChange() {
+            var data = dataSource.view(),
+                selected = $.map(this.select(), function (item) {
+                    return data[$(item).index()].Url;
+                });
+
+            console.log("Selected: " + selected.length + " item(s), [" + selected.join(", ") + "]");
+
+            var splitter = $("#contentSplitter").data("kendoSplitter");
+            splitter.ajaxRequest("#contentPane", selected);
+        }
+
+    });
+</script>
+
+@* Custom style for the Main Panel Items *@
+<style scoped>
+    .mainPanel 
+    {
+        float: left;
+        width: 270px;
+        height: 110px;
+        margin: 5px;
+        padding: 5px;
+        -moz-box-shadow: inset 0 0 30px rgba(0,0,0,0.15);
+        -webkit-box-shadow: inset 0 0 30px rgba(0,0,0,0.15);
+        box-shadow: inset 0 0 30px rgba(0,0,0,0.15);
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        border-radius: 15px;
+        background-image: none;
+        cursor: pointer;
+    }
+    .mainPanel img 
+    {
+        float: left;
+        width: 110px;
+        height: 110px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+    }
+    .mainPanel h2
+    {
+        margin: 10px 0 0 0;
+        padding: 10px 10px 0 20px;
+        font-size: 18px;
+        color: #f0713a;
+        float: left;
+        max-width: 120px;
+        /* text-transform: uppercase; */
+    }      
+    .mainPanel h3 
+    {
+        margin: 5px 0 0 0;
+        padding: 5px 10px 0 20px;
+        font-size: 1em;
+        float: left;
+        max-width: 120px;
+    }
+    .k-state-selected h3 
+    {
+        color: #fff;
+        background-color: rgba(0,0,0,0.4);
+        -moz-box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+        -webkit-box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+        box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+        -moz-border-radius-topright: 5px;
+        -moz-border-radius-bottomright: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -webkit-border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    .k-listview:after
+    {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+    .k-listview 
+    {
+        border: 0;
+        padding: 10px 10px 10px 10px;
+        min-width: 0;
+    }
+</style>
