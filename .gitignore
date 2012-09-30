@@ -21,7 +21,7 @@
 *.log
 *.lib
 *.sbr
-*.sdf
+#*.sdf
 *.opensdf
 *.unsuccessfulbuild
 ipch/
@@ -63,4 +63,4 @@ packages/
 *.testsettings
 
 #Database Files
-Data/
+#Data/
