@@ -33,7 +33,7 @@
 <body>
     <div id="mainSplitter" style="height: 100%; border: 0;">
         <div id="titlePane" style="background-color: #fff">
-            <span><img id ="logoID" src="@Url.Content("~/Content/images/logo.png")" alt="logo" border="0"/></span>
+            <span class="logoStyle"><img id ="logoID" src="@Url.Content("~/Content/images/logo.png")" alt="logo" border="0"/></span>
             <span style="font-size:medium; color:Gray;"> Starter Project &#174;</span>
 
             <span style="color:gray; float:right; padding-top:20px">Copyright &#169; NiCris Starter 2012 | Version: 
@@ -84,6 +84,13 @@
 
     <style scoped>
         #logoID { cursor: pointer; }
+        
+        .logoStyle img:hover 
+        {
+          -webkit-box-shadow: 1px 1px 1px #777;
+             -moz-box-shadow: 1px 1px 1px #777;
+                  box-shadow: 1px 1px 1px #777;
+        }          
     </style>
 </body>
 </html>
