@@ -8,6 +8,7 @@ using NiCris.DataAccess.Interfaces;
 using NiCris.Web.Hubs;
 using SignalR;
 using SignalR.Hubs;
+using NiCris.Web.Helpers;
 
 namespace NiCris.Web.Controllers
 {
@@ -28,7 +29,11 @@ namespace NiCris.Web.Controllers
         // VIEWS
         public ActionResult Index()
         {
-            ViewBag.ClientName = "user-" + _rnd.Next(10000, 99999);
+            // ViewBag.ClientName = "user-" + _rnd.Next(10000, 99999);
+            string user = SecurityHelper.GetLoggedInWindowsUserName(System.Web.HttpContext.Current.User);
+            string browser = Request.Browser.Browser;
+            ViewBag.ClientName = user + "-" + browser;
+
             return View();
         }
 

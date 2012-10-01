@@ -207,6 +207,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap\bootstrap.min.js" />
     <Content Include="Scripts\business\Layout.js" />
+    <Content Include="Scripts\business\Task.Dashboard.js" />
     <Content Include="Scripts\jquery\jquery-1.7.2.min.js" />
     <Content Include="Scripts\jquery\jquery-ui-1.8.23.min.js" />
     <Content Include="Scripts\jquery\jquery.signalR-0.5.3.min.js" />
