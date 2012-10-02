@@ -72,8 +72,7 @@
                     return data[$(item).index()].Url;
                 });
 
-            console.log("Selected: " + selected.length + " item(s), [" + selected.join(", ") + "]");
-
+            // console.log("Selected: " + selected.length + " item(s), [" + selected.join(", ") + "]");
             var splitter = $("#contentSplitter").data("kendoSplitter");
             splitter.ajaxRequest("#contentPane", selected);
         }

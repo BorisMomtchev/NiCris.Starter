@@ -5,7 +5,6 @@
         messenger.addToGroup("sourcing");
         return messenger.getAllMessages().done(function (message) {
             // Process Message Indivudally if Necessary
-            
         });
     }
 
@@ -23,7 +22,6 @@
     $.connection.hub.start(function () {
         init().done(function () {
             messenger.begin();
-
         });
     });
 

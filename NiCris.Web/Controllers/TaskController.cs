@@ -5,10 +5,10 @@ using System.Web.Mvc;
 using NiCris.BusinessObjects;
 using NiCris.DataAccess.Dapper;
 using NiCris.DataAccess.Interfaces;
+using NiCris.Web.Helpers;
 using NiCris.Web.Hubs;
 using SignalR;
 using SignalR.Hubs;
-using NiCris.Web.Helpers;
 
 namespace NiCris.Web.Controllers
 {
