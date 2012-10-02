@@ -93,6 +93,9 @@
     </Compile>
     <Compile Include="Helpers\SecurityHelper.cs" />
     <Compile Include="Hubs\Chat.cs" />
+    <Compile Include="Hubs\Message.cs" />
+    <Compile Include="Hubs\Messenger.cs" />
+    <Compile Include="Hubs\MessengerHub.cs" />
     <Compile Include="Hubs\TaskHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\FeedbackModel.cs" />
@@ -122,6 +125,7 @@
     <Content Include="Content\images\tasks.png" />
     <Content Include="Content\images\TasksMain.png" />
     <Content Include="Content\images\tasks_header.png" />
+    <Content Include="Content\jgrowl\jquery.jgrowl.css" />
     <Content Include="Content\kendo\Default\editor.png" />
     <Content Include="Content\kendo\Default\imagebrowser.png" />
     <Content Include="Content\kendo\Default\loading-image.gif" />
@@ -206,9 +210,11 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap\bootstrap.min.js" />
     <Content Include="Scripts\business\Layout.js" />
+    <Content Include="Scripts\business\SignalR.MessengerHub.js" />
     <Content Include="Scripts\business\Task.Dashboard.js" />
     <Content Include="Scripts\jquery\jquery-1.7.2.min.js" />
     <Content Include="Scripts\jquery\jquery-ui-1.8.23.min.js" />
+    <Content Include="Scripts\jquery\jquery.jgrowl.js" />
     <Content Include="Scripts\jquery\jquery.signalR-0.5.3.min.js" />
     <Content Include="Scripts\jquery\jquery.validate.min.js" />
     <Content Include="Scripts\jtable\extensions\jquery.jtable.aspnetpagemethods.js" />
@@ -328,7 +334,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>7458</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
