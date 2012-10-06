@@ -104,10 +104,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="Content\bootstrap\bootstrap-notify.css" />
     <Content Include="Content\bootstrap\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap\bootstrap.css" />
     <Content Include="Content\bootstrap\bootstrap.min.css" />
+    <Content Include="Content\bootstrap\styles\alert-bangtidy.css" />
+    <Content Include="Content\bootstrap\styles\alert-blackgloss.css" />
     <Content Include="Content\images\admin_header.png" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\feedback.png" />
@@ -208,6 +211,7 @@
     <Content Include="Content\themes\redmond\images\ui-icons_f9bd01_256x240.png" />
     <Content Include="Content\themes\redmond\jquery-ui-1.8.16.custom.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap\bootstrap-notify.js" />
     <Content Include="Scripts\bootstrap\bootstrap.min.js" />
     <Content Include="Scripts\business\Layout.js" />
     <Content Include="Scripts\business\Settings.js" />
