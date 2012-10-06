@@ -4,5 +4,21 @@
 
 <div id="result" style="position: fixed; margin: 5px 20px 20px 20px;">
     <legend>Settings</legend> 
-    TODO
+
+    <button id="btnPrimary" class="btn btn-primary">Test alert-info</button> 
+    <button id="btnSuccess" class="btn btn-success">Test alert-success</button> 
+    <button id="btnWarning" class="btn btn-warning">Test alert-block</button> 
+    <button id="btnDanger" class="btn btn-danger">Test alert-error</button> 
+
+    <br/><br/>
+    @*<div class="alert alert-error">
+        Some cool error text...
+    </div>*@
+
+    <div id="alert-area"></div>
 </div>
+
+<script src="@Url.Content("~/Scripts/business/Settings.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    Settings.init();
+</script>

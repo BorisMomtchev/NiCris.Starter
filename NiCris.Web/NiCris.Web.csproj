@@ -210,6 +210,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap\bootstrap.min.js" />
     <Content Include="Scripts\business\Layout.js" />
+    <Content Include="Scripts\business\Settings.js" />
     <Content Include="Scripts\business\SignalR.MessengerHub.js" />
     <Content Include="Scripts\business\Task.Dashboard.js" />
     <Content Include="Scripts\jquery\jquery-1.7.2.min.js" />
