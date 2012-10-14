@@ -1,30 +1,30 @@
 ﻿// Task Dashboard module
-var Settings = {};
+var Notifications = {};
 
 // *** Initialize
-Settings.init = function () {
-    console.log("Settings.init");
+Notifications.init = function () {
+    console.log("Notifications.init");
 
     // ** Initialize the Save button.
-    $("#btnPrimary").click(Settings.info);
-    $("#btnSuccess").click(Settings.success);
-    $("#btnWarning").click(Settings.warning);
-    $("#btnDanger").click(Settings.error);
+    $("#btnPrimary").click(Notifications.info);
+    $("#btnSuccess").click(Notifications.success);
+    $("#btnWarning").click(Notifications.warning);
+    $("#btnDanger").click(Notifications.error);
 
-    $("#btnInverse").click(Settings.inverse);
+    $("#btnInverse").click(Notifications.inverse);
 }
 
 
-Settings.info = function () {
+Notifications.info = function () {
     newAlert('alert alert-info', 'Some Info!');
 }
-Settings.success = function () {
+Notifications.success = function () {
     newAlert('alert alert-success', 'Some Success!');
 }
-Settings.warning = function () {
+Notifications.warning = function () {
     newAlert('alert alert-block', 'Some Warning!');
 }
-Settings.error = function () {
+Notifications.error = function () {
     newAlert('alert alert-error', 'Some Error!');
 }
 
@@ -35,7 +35,7 @@ function newAlert(type, message) {
 
 
 
-Settings.inverse = function () {
+Notifications.inverse = function () {
     // newNotification('.top-right', 'danger', 'Some Cool Danger!');
     // newNotification('.bottom-right', 'info', 'Some Cool Info!');
     // newNotification('.top-right', 'bangTidy', 'Some Cool bangTidy!');

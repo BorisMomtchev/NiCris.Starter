@@ -35,20 +35,9 @@ namespace NiCris.Web.Controllers
         // *** JSON & JSONP providers for the Main Panel Items & Panel Menu on the left
         public JsonResult PanelData()
         {
-            var tasks = GetTasksEx().Select(x => new PanelData
-            {
-                text = x.Name,
-                url = x.Url,
-                imageUrl = Url.Content("~/Content/images/") + x.Icon
-            });
-
-            var admins = GetAdminEx().Select(x => new PanelData
-            {
-                text = x.Name,
-                url = x.Url,
-                imageUrl = Url.Content("~/Content/images/") + x.Icon
-            }); 
-
+            var tasks = GetTasksEx().Select(x => new PanelData { text = x.Name, url = x.Url, imageUrl = Url.Content("~/Content/images/") + x.Icon });
+            var samples = GetSamplesEx().Select(x => new PanelData{ text = x.Name, url = x.Url, imageUrl = Url.Content("~/Content/images/") + x.Icon});
+            var admins = GetAdminEx().Select(x => new PanelData { text = x.Name, url = x.Url, imageUrl = Url.Content("~/Content/images/") + x.Icon }); 
             var feedback = GetFeedbackEx().Select(x => new PanelData
             {
                 text = x.Name,
@@ -59,6 +48,7 @@ namespace NiCris.Web.Controllers
             var panelData = new List<PanelData>
                             {
                                 new PanelData {text = "Tasks", imageUrl = Url.Content("~/Content/images/tasks_header.png"), items = tasks},
+                                new PanelData {text = "Samples", imageUrl = Url.Content("~/Content/images/bestseller_header.png"), items = samples},
                                 new PanelData {text = "Administration", imageUrl = Url.Content("~/Content/images/admin_header.png"), items = admins},
                                 new PanelData {text = "Feedback", imageUrl = Url.Content("~/Content/images/feedback_header.png"), items = feedback}
                             };
@@ -91,13 +81,20 @@ namespace NiCris.Web.Controllers
         private IList<PanelItem> GetTasksEx()
         {
             IList<PanelItem> tasks = new List<PanelItem>();
-            tasks.Add(new PanelItem { Id = 1, Url = Url.Action("Index", "Task"), Name = "Dashboard", Icon = "tasks.png" });
+            tasks.Add(new PanelItem { Id = 1, Url = Url.Action("Index", "Task"), Name = "Dashboard", Icon = "task.png" });
             return tasks;
+        }
+        private IList<PanelItem> GetSamplesEx()
+        {
+            IList<PanelItem> samples = new List<PanelItem>();
+            samples.Add(new PanelItem { Id = 1, Url = Url.Action("Notifications", "Samples"), Name = "Notifications", Icon = "notification.png" });
+            samples.Add(new PanelItem { Id = 2, Url = Url.Action("Search", "Samples"), Name = "Search", Icon = "search.png" });
+            return samples;
         }
         private IList<PanelItem> GetAdminEx()
         {
             IList<PanelItem> admins = new List<PanelItem>();
-            admins.Add(new PanelItem { Id = 1, Url = Url.Action("Settings", "Admin"), Name = "Settings", Icon = "settings.png" });
+            admins.Add(new PanelItem { Id = 1, Url = Url.Action("Settings", "Admin"), Name = "Settings", Icon = "setting.png" });
             admins.Add(new PanelItem { Id = 2, Url = Url.Action("Security", "Admin"), Name = "Security", Icon = "security.png" });
             admins.Add(new PanelItem { Id = 3, Url = Url.Action("Log", "Admin"), Name = "Log", Icon = "log.png" });
             return admins;
@@ -112,3 +109,9 @@ namespace NiCris.Web.Controllers
     }
 
 }
+
+/* Icons */
+// http://www.iconfinder.com/search/?q=iconset%3Afrankfurt
+// http://www.iconfinder.com/search/1/?q=iconset%3Ade-munich-icon-pack
+
+// http://www.iconfinder.com/search/?q=iconset%3Acc_mono_icon_set

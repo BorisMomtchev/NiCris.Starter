@@ -86,6 +86,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SamplesController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Extensions\JsonParameterAttribute.cs" />
     <Compile Include="Extensions\JsonpResult.cs" />
@@ -113,6 +114,8 @@
     <Content Include="Content\bootstrap\styles\alert-bangtidy.css" />
     <Content Include="Content\bootstrap\styles\alert-blackgloss.css" />
     <Content Include="Content\images\admin_header.png" />
+    <Content Include="Content\images\bestseller_header.png" />
+    <Content Include="Content\images\bookmark.png" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\feedback.png" />
     <Content Include="Content\images\FeedbackMain.png" />
@@ -122,11 +125,13 @@
     <Content Include="Content\images\Log.png" />
     <Content Include="Content\images\LogMain.png" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\notification.png" />
+    <Content Include="Content\images\search.png" />
     <Content Include="Content\images\security.png" />
     <Content Include="Content\images\SecurityMain.png" />
-    <Content Include="Content\images\settings.png" />
+    <Content Include="Content\images\setting.png" />
     <Content Include="Content\images\SettingsMain.png" />
-    <Content Include="Content\images\tasks.png" />
+    <Content Include="Content\images\task.png" />
     <Content Include="Content\images\TasksMain.png" />
     <Content Include="Content\images\tasks_header.png" />
     <Content Include="Content\jgrowl\jquery.jgrowl.css" />
@@ -214,8 +219,8 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap\bootstrap-notify.js" />
     <Content Include="Scripts\bootstrap\bootstrap.min.js" />
+    <Content Include="Scripts\business\Notifications.js" />
     <Content Include="Scripts\business\Layout.js" />
-    <Content Include="Scripts\business\Settings.js" />
     <Content Include="Scripts\business\SignalR.MessengerHub.js" />
     <Content Include="Scripts\business\Task.Dashboard.js" />
     <Content Include="Scripts\jquery\jquery-1.7.2.min.js" />
@@ -271,7 +276,9 @@
     <Content Include="Scripts\jtable\themes\standard\red\title-bg.png" />
     <Content Include="Scripts\kendo\kendo.web.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -289,7 +296,9 @@
     <Content Include="packages.config" />
     <Content Include="NLog.config" />
     <Content Include="settings.config" />
-    <Content Include="sql.config" />
+    <Content Include="sql.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Home\_MainPanel.cshtml" />
   </ItemGroup>
@@ -324,6 +333,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Task\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Samples\Notifications.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Samples\Search.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
